@@ -26,10 +26,10 @@ class WebViewViewModel(
     }
 
     // called from view
-    fun loadFooterGreeting2(): MutableLiveData<String> = loadGreeting2(testRepository)
+    fun loadGreeting2(): MutableLiveData<String> = loadGreeting2(testRepository)
 
     // called from view
-    fun loadFooterGreeting() {
+    fun loadGreeting() {
         loadGreeting(testRepository)
     }
 

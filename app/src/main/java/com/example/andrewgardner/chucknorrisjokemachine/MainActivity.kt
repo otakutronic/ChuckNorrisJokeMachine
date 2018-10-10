@@ -26,7 +26,7 @@ class MainActivity : AppCompatActivity() {
             Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
                     .setAction("Action", null).show()
 
-            viewModel.loadFooterGreeting()
+            viewModel.loadGreeting()
         }
 
         val factory = InjectorUtils.provideWebViewViewModelFactory()
