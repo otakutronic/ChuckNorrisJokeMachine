@@ -1,14 +1,21 @@
 package com.example.andrewgardner.chucknorrisjokemachine
 
+import android.arch.lifecycle.Observer
+import android.arch.lifecycle.ViewModelProviders
 import android.os.Bundle
 import android.support.design.widget.Snackbar
 import android.support.v7.app.AppCompatActivity
+import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
+import com.example.andrewgardner.chucknorrisjokemachine.utilities.InjectorUtils
+import com.example.andrewgardner.viewmodel.WebViewViewModel
 
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {
+
+    private lateinit var viewModel: WebViewViewModel
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -18,7 +25,18 @@ class MainActivity : AppCompatActivity() {
         fab.setOnClickListener { view ->
             Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
                     .setAction("Action", null).show()
+
+            viewModel.loadFooterGreeting()
         }
+
+        val factory = InjectorUtils.provideWebViewViewModelFactory()
+        viewModel = ViewModelProviders.of(this, factory)
+                .get(WebViewViewModel::class.java)
+
+        // observe greeting livedata
+        viewModel.greeting().observe(this, Observer { greeting ->
+            Log.e("STUFF", greeting)
+        })
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
