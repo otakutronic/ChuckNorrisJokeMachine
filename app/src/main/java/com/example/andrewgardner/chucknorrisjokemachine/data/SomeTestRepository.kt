@@ -16,6 +16,7 @@
 
 package com.zozo.pb.repo
 
+import io.reactivex.Flowable
 import io.reactivex.Single
 
 class SomeTestRepository private constructor(
@@ -37,6 +38,12 @@ class SomeTestRepository private constructor(
         val stringMessage = "Hello I am a String"
         return Single.just(stringMessage)
     }
+
+    //fun getCities(): Flowable<List<CityEntity>>
+
+    //fun getWeather(cityName: String): Single<WeatherDetailsDTO>
+
+    //fun addCity(cityName: String)
 
     companion object {
 
