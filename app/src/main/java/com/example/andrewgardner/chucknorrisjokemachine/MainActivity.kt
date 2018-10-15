@@ -9,9 +9,12 @@ import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
 import com.example.andrewgardner.chucknorrisjokemachine.utilities.InjectorUtils
-import com.example.andrewgardner.viewmodel.WebViewViewModel
+import com.example.andrewgardner.chucknorrisjokemachine.viewmodels.WebViewViewModel
 
 import kotlinx.android.synthetic.main.activity_main.*
+import android.widget.TextView
+
+
 
 class MainActivity : AppCompatActivity() {
 
@@ -22,11 +25,14 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
         setSupportActionBar(toolbar)
 
+        // globally
+        val myAwesomeTextView = findViewById(R.id.textView) as TextView
+
         fab.setOnClickListener { view ->
             Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
                     .setAction("Action", null).show()
 
-            viewModel.loadGreeting()
+            viewModel.loadPosts()
         }
 
         val factory = InjectorUtils.provideWebViewViewModelFactory()
@@ -34,8 +40,11 @@ class MainActivity : AppCompatActivity() {
                 .get(WebViewViewModel::class.java)
 
         // observe greeting livedata
-        viewModel.greeting().observe(this, Observer { greeting ->
-            Log.e("STUFF", greeting)
+        viewModel.wikiPosts().observe(this, Observer { greeting ->
+            Log.e("STUFF", greeting.toString())
+            //in your OnCreate() method
+            myAwesomeTextView.text = greeting.toString()
+
         })
     }
 

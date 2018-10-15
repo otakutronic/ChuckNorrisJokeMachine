@@ -1,4 +1,4 @@
-package com.example.andrewgardner.chucknorrisjokemachine.data
+package com.example.andrewgardner.chucknorrisjokemachine.model
 
 class DcCharacterDataSource {
 

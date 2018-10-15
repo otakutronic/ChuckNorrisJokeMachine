@@ -1,4 +1,4 @@
-package com.example.andrewgardner.chucknorrisjokemachine.data
+package com.example.andrewgardner.chucknorrisjokemachine.model
 
 import java.util.Timer
 import java.util.Random

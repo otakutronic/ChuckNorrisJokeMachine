@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.zozo.pb.repo
+package com.example.andrewgardner.chucknorrisjokemachine.model
 
 import android.arch.persistence.room.Dao
 

@@ -1,9 +1,13 @@
 package com.example.andrewgardner.chucknorrisjokemachine.utilities
 
+import com.example.andrewgardner.chucknorrisjokemachine.model.SomeTestRepository
+import com.example.andrewgardner.chucknorrisjokemachine.network.PostApi
 import com.example.andrewgardner.chucknorrisjokemachine.viewmodels.WebViewViewModelFactory
-import com.zozo.pb.repo.SomeTestRepository
+import retrofit2.Retrofit
 
 object InjectorUtils {
+
+    //private var retrofit : Retrofit
 
     fun getSomeTestRepository(): SomeTestRepository {
         return SomeTestRepository.getInstance()
@@ -11,5 +15,9 @@ object InjectorUtils {
 
     fun provideWebViewViewModelFactory(): WebViewViewModelFactory {
         return WebViewViewModelFactory(getSomeTestRepository())
+    }
+
+    internal fun providePostApi(retrofit: Retrofit): PostApi {
+        return retrofit.create(PostApi::class.java)
     }
 }

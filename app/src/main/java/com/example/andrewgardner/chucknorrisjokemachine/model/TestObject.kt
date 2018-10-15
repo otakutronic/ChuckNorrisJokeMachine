@@ -2,7 +2,7 @@
  * Copyright (c) 2018. START TODAY Engineering CO.,LTD. All rights reserved.
  */
 
-package com.zozo.pb.repo
+package com.example.andrewgardner.chucknorrisjokemachine.model
 
 import android.arch.persistence.room.ColumnInfo
 import android.arch.persistence.room.Entity

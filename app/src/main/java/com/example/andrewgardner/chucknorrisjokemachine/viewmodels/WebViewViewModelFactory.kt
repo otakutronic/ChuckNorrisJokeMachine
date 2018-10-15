@@ -2,8 +2,8 @@ package com.example.andrewgardner.chucknorrisjokemachine.viewmodels
 
 import android.arch.lifecycle.ViewModel
 import android.arch.lifecycle.ViewModelProvider
-import com.example.andrewgardner.viewmodel.WebViewViewModel
-import com.zozo.pb.repo.SomeTestRepository
+import com.example.andrewgardner.chucknorrisjokemachine.model.SomeTestRepository
+import com.example.andrewgardner.chucknorrisjokemachine.viewmodels.WebViewViewModel
 
 /**
  * Factory for creating a [WebViewViewModel] with a constructor that takes a [SomeTestRepository]
