@@ -1,4 +1,4 @@
-package com.example.andrewgardner.chucknorrisjokemachine.utilities
+package com.example.andrewgardner.chucknorrisjokemachine.util
 
 import com.example.andrewgardner.chucknorrisjokemachine.model.SomeTestRepository
 import com.example.andrewgardner.chucknorrisjokemachine.network.PostApi

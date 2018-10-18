@@ -2,18 +2,14 @@ package com.example.andrewgardner.chucknorrisjokemachine
 
 import android.arch.lifecycle.Observer
 import android.arch.lifecycle.ViewModelProviders
+import android.databinding.DataBindingUtil
 import android.os.Bundle
-import android.support.design.widget.Snackbar
 import android.support.v7.app.AppCompatActivity
 import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
-import com.example.andrewgardner.chucknorrisjokemachine.utilities.InjectorUtils
+import com.example.andrewgardner.chucknorrisjokemachine.util.InjectorUtils
 import com.example.andrewgardner.chucknorrisjokemachine.viewmodels.WebViewViewModel
-
-import kotlinx.android.synthetic.main.activity_main.*
-import android.widget.TextView
-
 
 
 class MainActivity : AppCompatActivity() {
@@ -22,28 +18,32 @@ class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
-        setSupportActionBar(toolbar)
+        //setContentView(R.layout.main_activity)
+        //setSupportActionBar(toolbar)
 
         // globally
-        val myAwesomeTextView = findViewById(R.id.textView) as TextView
+        //val myAwesomeTextView = findViewById(R.id.textView) as TextView
 
-        fab.setOnClickListener { view ->
+        val binding = DataBindingUtil.setContentView(this, R.layout.main_activity) as ActivityMainBinding
+        binding.setLifecycleOwner(this)
+        binding.viewModel = viewModel
+
+        /*fab.setOnClickListener { view ->
             Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
                     .setAction("Action", null).show()
 
             viewModel.loadPosts()
-        }
+        }*/
 
         val factory = InjectorUtils.provideWebViewViewModelFactory()
         viewModel = ViewModelProviders.of(this, factory)
                 .get(WebViewViewModel::class.java)
 
         // observe greeting livedata
-        viewModel.wikiPosts().observe(this, Observer { greeting ->
+        viewModel.githubUsers().observe(this, Observer { greeting ->
             Log.e("STUFF", greeting.toString())
             //in your OnCreate() method
-            myAwesomeTextView.text = greeting.toString()
+            //myAwesomeTextView.text = greeting.toString()
 
         })
     }
