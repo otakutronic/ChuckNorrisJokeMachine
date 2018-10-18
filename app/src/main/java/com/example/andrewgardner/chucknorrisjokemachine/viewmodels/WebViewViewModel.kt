@@ -7,7 +7,7 @@ import com.example.andrewgardner.chucknorrisjokemachine.model.Post
 import com.example.andrewgardner.chucknorrisjokemachine.model.SomeTestRepository
 import com.example.andrewgardner.chucknorrisjokemachine.model.UsersList
 import com.example.andrewgardner.chucknorrisjokemachine.network.Api
-import com.example.andrewgardner.chucknorrisjokemachine.network.GithubApiService
+import com.example.andrewgardner.chucknorrisjokemachine.network.WikiApiService
 import io.reactivex.Single
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
@@ -18,8 +18,9 @@ import retrofit2.Callback
 import retrofit2.Response
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
-import android.databinding.Observable
-//import android.databinding.PropertyChangeRegistr
+import android.arch.lifecycle.LiveData
+
+
 
 class WebViewViewModel(
         testRepository: SomeTestRepository
@@ -31,7 +32,7 @@ class WebViewViewModel(
 
     val BASE_URL = "https://api.github.com/search/" //https://api.github.com/search/users?q=rohitkan
 
-    private val users: MutableLiveData<String> = MutableLiveData()
+    private val greeting: MutableLiveData<String> = MutableLiveData()
 
     private val postList: MutableLiveData<List<Post>> = MutableLiveData()
 
@@ -45,15 +46,21 @@ class WebViewViewModel(
 
     var str : String = ""
 
-    //lateinit var postApi: PostApi = InjectorUtils.providePostApi()
+    private var text: MutableLiveData<String>  = MutableLiveData()
 
-
-    // observed from view
-    fun githubUsers(): MutableLiveData<String> {
-        return users
+    fun getText(): MutableLiveData<String> {
+        if (text == null) {
+            text = MutableLiveData()
+        }
+        return text as MutableLiveData<String>
     }
 
-    fun getGithubUsers() {
+    // observed from view
+    fun wikiPosts(): MutableLiveData<String> {
+        return greeting
+    }
+
+    fun getUsers() {
 
         str = ""
 
@@ -77,7 +84,7 @@ class WebViewViewModel(
                     str += "\n" + user.get(i).id + " " + user.get(i).login
                 }
 
-                users.value = str
+                text.value = str
             }
 
             override fun onFailure(call: Call<UsersList>?, t: Throwable?) {
@@ -95,13 +102,13 @@ class WebViewViewModel(
     }
 
     private val wikiApiServe by lazy {
-        GithubApiService.create()
+        WikiApiService.create()
     }
 
     // called from view
     fun loadPosts() {
         //loadWike()
-        getGithubUsers()
+        getUsers()
     }
 
     override fun onCleared() {
@@ -135,7 +142,7 @@ class WebViewViewModel(
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(
                         { myData -> postList.value = myData },
-                        { throwable -> users.value = "Error message" }
+                        { throwable -> greeting.value = "Error message" }
                 )
         )*/
     }
@@ -145,8 +152,8 @@ class WebViewViewModel(
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(
-                        { result -> users.value = "${result.query.searchinfo.totalhits} result found" },
-                        { error -> users.value = error.message}
+                        { result -> greeting.value = "${result.query.searchinfo.totalhits} result found" },
+                        { error -> greeting.value = error.message}
                 )
         )
     }
@@ -181,8 +188,8 @@ class WebViewViewModel(
         disposables.add(testRepository.getMessage()
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(
-                        { myData -> users.value = myData },
-                        { throwable -> users.value = "Error message" }
+                        { myData -> greeting.value = myData },
+                        { throwable -> greeting.value = "Error message" }
                 )
         )
     }

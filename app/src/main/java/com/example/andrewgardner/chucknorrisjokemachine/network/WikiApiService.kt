@@ -13,7 +13,9 @@ import com.example.andrewgardner.chucknorrisjokemachine.model.UsersList
 import retrofit2.Call
 
 
-interface GithubApiService {
+
+
+interface WikiApiService {
 
     @GET("users?q=rokano")
     fun getUsers(): Call<UsersList>
@@ -31,7 +33,7 @@ interface GithubApiService {
                        @Query("srsearch") srsearch: String): Observable<Model.Result>
 
     companion object {
-        fun create(): GithubApiService {
+        fun create(): WikiApiService {
 
             val retrofit = Retrofit.Builder()
                     .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
@@ -39,7 +41,7 @@ interface GithubApiService {
                     .baseUrl("https://api.chucknorris.io/jokes/random/")
                     .build()
 
-            return retrofit.create(GithubApiService::class.java)
+            return retrofit.create(WikiApiService::class.java)
         }
     }
 

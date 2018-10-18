@@ -2,14 +2,19 @@ package com.example.andrewgardner.chucknorrisjokemachine
 
 import android.arch.lifecycle.Observer
 import android.arch.lifecycle.ViewModelProviders
-import android.databinding.DataBindingUtil
 import android.os.Bundle
+import android.support.design.widget.Snackbar
 import android.support.v7.app.AppCompatActivity
 import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
-import com.example.andrewgardner.chucknorrisjokemachine.util.InjectorUtils
+import com.example.andrewgardner.chucknorrisjokemachine.utilities.InjectorUtils
 import com.example.andrewgardner.chucknorrisjokemachine.viewmodels.WebViewViewModel
+import android.databinding.DataBindingUtil
+import kotlinx.android.synthetic.main.main_activity.*
+import android.widget.TextView
+import com.example.andrewgardner.chucknorrisjokemachine.databinding.MainActivityBinding
+
 
 
 class MainActivity : AppCompatActivity() {
@@ -18,15 +23,13 @@ class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        //setContentView(R.layout.main_activity)
+        setContentView(R.layout.main_activity)
+
         //setSupportActionBar(toolbar)
 
         // globally
         //val myAwesomeTextView = findViewById(R.id.textView) as TextView
 
-        val binding = DataBindingUtil.setContentView(this, R.layout.main_activity) as ActivityMainBinding
-        binding.setLifecycleOwner(this)
-        binding.viewModel = viewModel
 
         /*fab.setOnClickListener { view ->
             Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
@@ -40,12 +43,20 @@ class MainActivity : AppCompatActivity() {
                 .get(WebViewViewModel::class.java)
 
         // observe greeting livedata
-        viewModel.githubUsers().observe(this, Observer { greeting ->
+        viewModel.wikiPosts().observe(this, Observer { greeting ->
             Log.e("STUFF", greeting.toString())
             //in your OnCreate() method
             //myAwesomeTextView.text = greeting.toString()
 
         })
+
+        val binding : MainActivityBinding = DataBindingUtil.setContentView(this, R.layout.main_activity)
+        binding.setLifecycleOwner(this)
+        binding.viewModel = viewModel
+
+        viewModel.loadPosts()
+
+
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
