@@ -4,7 +4,7 @@
     <data>
         <variable
             name="viewModel"
-            type="com.example.andrewgardner.chucknorrisjokemachine.viewmodels.WebViewViewModel" />
+            type="com.example.andrewgardner.chucknorrisjokemachine.ui.post.PostListViewModel" />
     </data>
 
     <LinearLayout

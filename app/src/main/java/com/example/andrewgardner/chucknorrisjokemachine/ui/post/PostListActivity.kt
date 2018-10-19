@@ -1,25 +1,22 @@
-package com.example.andrewgardner.chucknorrisjokemachine
+package com.example.andrewgardner.chucknorrisjokemachine.ui.post
 
 import android.arch.lifecycle.Observer
 import android.arch.lifecycle.ViewModelProviders
 import android.os.Bundle
-import android.support.design.widget.Snackbar
 import android.support.v7.app.AppCompatActivity
 import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
-import com.example.andrewgardner.chucknorrisjokemachine.utilities.InjectorUtils
-import com.example.andrewgardner.chucknorrisjokemachine.viewmodels.WebViewViewModel
+import com.example.andrewgardner.chucknorrisjokemachine.utils.InjectorUtils
 import android.databinding.DataBindingUtil
-import kotlinx.android.synthetic.main.main_activity.*
-import android.widget.TextView
+import com.example.andrewgardner.chucknorrisjokemachine.R
 import com.example.andrewgardner.chucknorrisjokemachine.databinding.MainActivityBinding
 
 
 
-class MainActivity : AppCompatActivity() {
+class PostListActivity : AppCompatActivity() {
 
-    private lateinit var viewModel: WebViewViewModel
+    private lateinit var viewModel: PostListViewModel
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -38,9 +35,9 @@ class MainActivity : AppCompatActivity() {
             viewModel.loadPosts()
         }*/
 
-        val factory = InjectorUtils.provideWebViewViewModelFactory()
+        val factory = InjectorUtils.postListViewModelFactory()
         viewModel = ViewModelProviders.of(this, factory)
-                .get(WebViewViewModel::class.java)
+                .get(PostListViewModel::class.java)
 
         // observe greeting livedata
         viewModel.wikiPosts().observe(this, Observer { greeting ->
