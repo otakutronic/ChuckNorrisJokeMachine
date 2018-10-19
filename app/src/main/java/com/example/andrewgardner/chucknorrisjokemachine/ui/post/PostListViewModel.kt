@@ -2,12 +2,16 @@ package com.example.andrewgardner.chucknorrisjokemachine.ui.post
 
 import android.arch.lifecycle.MutableLiveData
 import android.arch.lifecycle.ViewModel
+import android.content.Context
+import android.net.ConnectivityManager
+import android.support.v4.content.ContextCompat.getSystemService
 import android.util.Log
 import com.example.andrewgardner.chucknorrisjokemachine.model.Post
 import com.example.andrewgardner.chucknorrisjokemachine.model.SomeTestRepository
 import com.example.andrewgardner.chucknorrisjokemachine.model.UsersList
 import com.example.andrewgardner.chucknorrisjokemachine.network.Api
 import com.example.andrewgardner.chucknorrisjokemachine.network.PostApi
+import com.example.andrewgardner.chucknorrisjokemachine.network.RepositoryRetriever
 import com.example.andrewgardner.chucknorrisjokemachine.network.WikiApiService
 import io.reactivex.Single
 import io.reactivex.android.schedulers.AndroidSchedulers
@@ -46,6 +50,8 @@ class PostListViewModel(
     var str : String = ""
 
     private var text: MutableLiveData<String>  = MutableLiveData()
+
+    private val repoRetriever = RepositoryRetriever()
 
     private val postApiServe by lazy {
         PostApi.create()
@@ -113,6 +119,12 @@ class PostListViewModel(
         //loadWike()
         getUsers()
     }
+
+    /*private fun isNetworkConnected(): Boolean {
+        val connectivityManager = getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager //1
+        val networkInfo = connectivityManager.activeNetworkInfo //2
+        return networkInfo != null && networkInfo.isConnected //3
+    }*/
 
     override fun onCleared() {
         //disposables.clear()
