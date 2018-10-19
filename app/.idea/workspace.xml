@@ -1,20 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="26c9a161-60b4-44e6-b2ef-c6bb5671811d" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" afterPath="$PROJECT_DIR$/.idea/misc.xml" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change beforePath="$PROJECT_DIR$/src/main/AndroidManifest.xml" afterPath="$PROJECT_DIR$/src/main/AndroidManifest.xml" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/andrewgardner/chucknorrisjokemachine/MainActivity.kt" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/andrewgardner/chucknorrisjokemachine/network/PostApi.kt" afterPath="$PROJECT_DIR$/src/main/java/com/example/andrewgardner/chucknorrisjokemachine/network/PostApi.kt" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/andrewgardner/chucknorrisjokemachine/ui/post/PostListViewModel.kt" afterPath="$PROJECT_DIR$/src/main/java/com/example/andrewgardner/chucknorrisjokemachine/ui/post/PostListViewModel2.kt" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/andrewgardner/chucknorrisjokemachine/utilities/InjectorUtils.kt" afterPath="$PROJECT_DIR$/src/main/java/com/example/andrewgardner/chucknorrisjokemachine/utils/InjectorUtils.kt" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/andrewgardner/chucknorrisjokemachine/viewmodels/WebViewViewModel.kt" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/andrewgardner/chucknorrisjokemachine/viewmodels/WebViewViewModelFactory.kt" afterPath="$PROJECT_DIR$/src/main/java/com/example/andrewgardner/chucknorrisjokemachine/ui/post/PostListViewModelFactory.kt" />
-      <change beforePath="$PROJECT_DIR$/src/main/res/layout/content_main.xml" afterPath="$PROJECT_DIR$/src/main/res/layout/content_main.xml" />
-      <change beforePath="$PROJECT_DIR$/src/main/res/layout/main_activity.xml" afterPath="$PROJECT_DIR$/src/main/res/layout/main_activity.xml" />
-      <change beforePath="$PROJECT_DIR$/src/main/res/menu/menu_main.xml" afterPath="$PROJECT_DIR$/src/main/res/menu/menu_main.xml" />
-    </list>
+    <list default="true" id="26c9a161-60b4-44e6-b2ef-c6bb5671811d" name="Default" comment="" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
