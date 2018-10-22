@@ -8,11 +8,11 @@ import android.arch.lifecycle.ViewModelProvider
  * for the current [Joke].
  */
 class JokeViewModelFactory(
-        private val postListRepository: JokeRepository
+        private val jokeRepository: JokeRepository
 ) : ViewModelProvider.NewInstanceFactory() {
 
     @Suppress("UNCHECKED_CAST")
     override fun <T : ViewModel> create(modelClass: Class<T>): T {
-        return JokeModel(postListRepository) as T
+        return JokeModel(jokeRepository) as T
     }
 }
