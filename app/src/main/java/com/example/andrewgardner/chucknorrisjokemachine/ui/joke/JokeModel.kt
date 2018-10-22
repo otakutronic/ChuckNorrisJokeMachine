@@ -24,13 +24,13 @@ class JokeModel(
         if (jokeText == null) {
             jokeText = MutableLiveData()
         }
-        return jokeText as MutableLiveData<String>
+        return jokeText
     }
 
     private val callback = object : Callback<Joke> {
         override fun onResponse(call: Call<Joke>?, response: Response<Joke>?) {
             var json = response?.body()
-            jokeText.value = json?.value.toString()
+            jokeText.value = json?.value
         }
 
         override fun onFailure(call: Call<Joke>?, t: Throwable?) {
