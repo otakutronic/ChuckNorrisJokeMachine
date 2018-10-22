@@ -1,24 +1,19 @@
 package com.example.andrewgardner.chucknorrisjokemachine.utils
 
-import com.example.andrewgardner.chucknorrisjokemachine.model.SomeTestRepository
-import com.example.andrewgardner.chucknorrisjokemachine.network.Api
-import com.example.andrewgardner.chucknorrisjokemachine.network.PostApi
-import com.example.andrewgardner.chucknorrisjokemachine.ui.post.PostListViewModelFactory
-import retrofit2.Retrofit
+import com.example.andrewgardner.chucknorrisjokemachine.ui.joke.JokeRepository
+import com.example.andrewgardner.chucknorrisjokemachine.ui.joke.JokeViewModelFactory
 
 object InjectorUtils {
 
     //private var retrofit : Retrofit
 
-    fun getSomeTestRepository(): SomeTestRepository {
-        return SomeTestRepository.getInstance()
+    fun getPostListRepository(): JokeRepository {
+        return JokeRepository.getInstance()
     }
 
-    fun postListViewModelFactory(): PostListViewModelFactory {
-        return PostListViewModelFactory(getSomeTestRepository())
+    fun postListViewModelFactory(): JokeViewModelFactory {
+        return JokeViewModelFactory(getPostListRepository())
     }
 
-    internal fun providePostApi(): Api {
-        return PostApi.create()!!
-    }
+
 }
