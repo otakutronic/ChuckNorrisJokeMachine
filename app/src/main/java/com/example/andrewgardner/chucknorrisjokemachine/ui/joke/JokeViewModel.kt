@@ -4,21 +4,16 @@ import android.arch.lifecycle.MutableLiveData
 import android.arch.lifecycle.ViewModel
 import android.util.Log
 import com.example.andrewgardner.chucknorrisjokemachine.model.Joke
+import com.example.andrewgardner.chucknorrisjokemachine.network.ChuckNorrisRepository
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
-class JokeModel(
-        jokeRepository: JokeRepository
+class JokeViewModel(
+        private val chuckNorrisRepository: ChuckNorrisRepository
 ) : ViewModel() {
 
-    companion object {
-        private const val KEY_CURRENT_WEBVIEW = "currentWebView"
-    }
-
     public var jokeText: MutableLiveData<String>  = MutableLiveData()
-
-    private val repoRetriever = JokeRepository()
 
     fun getText(): MutableLiveData<String> {
         if (jokeText == null) {
@@ -42,8 +37,7 @@ class JokeModel(
         loadJoke()
     }
 
-    // called from view
     fun loadJoke() {
-        repoRetriever.getRandomJoke(callback)
+        chuckNorrisRepository.getRandomJoke(callback)
     }
 }

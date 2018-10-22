@@ -3,7 +3,7 @@
 <data>
     <variable
         name="viewModel"
-        type="com.example.andrewgardner.chucknorrisjokemachine.ui.joke.JokeModel" />
+        type="com.example.andrewgardner.chucknorrisjokemachine.ui.joke.JokeViewModel" />
 </data>
 
 <LinearLayout
