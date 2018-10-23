@@ -24,8 +24,8 @@ class JokeViewModel(
 
     private val callback = object : Callback<Joke> {
         override fun onResponse(call: Call<Joke>?, response: Response<Joke>?) {
-            var json = response?.body()
-            jokeText.value = json?.value
+            val joke = response?.body()
+            jokeText.value = joke?.value
         }
 
         override fun onFailure(call: Call<Joke>?, t: Throwable?) {
