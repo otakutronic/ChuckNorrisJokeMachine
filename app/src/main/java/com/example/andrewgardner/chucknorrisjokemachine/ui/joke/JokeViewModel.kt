@@ -39,10 +39,10 @@ class JokeViewModel(
     }
 
     fun loadJoke() {
-        //val joke : MutableLiveData<Joke> = chuckNorrisRepository.getRandomJoke2()
-        //ßLog.e("STUFF", joke.value.toString())
-        //jokeText.value = joke.value as String?
+        val joke : MutableLiveData<Joke> = chuckNorrisRepository.getRandomJoke2()
+        jokeText.value = joke.value as String?
+        Log.e("STUFF", jokeText.value.toString())
 
-        chuckNorrisRepository.getRandomJoke(callback)
+        //chuckNorrisRepository.getRandomJoke(callback)
     }
 }

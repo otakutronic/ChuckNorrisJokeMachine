@@ -70,6 +70,17 @@ class ChuckNorrisRepository {
 
         val data = MutableLiveData<Joke>()
         userCache!!.put(data)
+
+
+        callback = object : Callback<Joke> {
+        override fun onResponse(call: Call<Joke>?, response: Response<Joke>?) {
+            val joke = response?.body()
+            jokeText.value = joke?.value
+        }
+
+        override fun onFailure(call: Call<Joke>?, t: Throwable?) {
+            Log.v("Error", t.toString())
+        }
 */
 
         val data = MutableLiveData<Joke>()
@@ -78,10 +89,10 @@ class ChuckNorrisRepository {
         // A complete implementation also handles error cases.
         service.getRandomJoke().enqueue(object : Callback<Joke> {
             override fun onResponse(call: Call<Joke>, response: Response<Joke>) {
-                Log.e("STUFF", response.body().toString())
+                Log.e("STUFF", response.body()?.value.toString())
                 //data.setValue(response.body())
                 //val joke = response?.body()
-                //data.value = joke
+                data.value = response.body()
             }
             override fun onFailure(call: Call<Joke>?, t: Throwable?) {
                 Log.v("Error", t.toString())
