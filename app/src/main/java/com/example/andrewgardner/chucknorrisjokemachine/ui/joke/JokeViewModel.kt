@@ -13,7 +13,7 @@ class JokeViewModel(
         private val chuckNorrisRepository: ChuckNorrisRepository
 ) : ViewModel() {
 
-    public var jokeText: MutableLiveData<String>  = MutableLiveData()
+    private var jokeText: MutableLiveData<String>  = MutableLiveData()
 
     fun getText(): MutableLiveData<String> {
         if (jokeText == null) {

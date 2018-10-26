@@ -12,25 +12,25 @@ import com.example.andrewgardner.chucknorrisjokemachine.databinding.MainActivity
 
 class JokeActivity : AppCompatActivity() {
 
-    private lateinit var viewModel: JokeViewModel
+    private lateinit var jokeViewModel: JokeViewModel
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.main_activity)
 
         val factory = InjectorUtils.jokeViewModelFactory()
-        viewModel = ViewModelProviders.of(this, factory)
+        jokeViewModel = ViewModelProviders.of(this, factory)
                 .get(JokeViewModel::class.java)
 
         // observe joke livedata
-        viewModel.jokeText.observe(this, Observer { joke ->
+        jokeViewModel.getText().observe(this, Observer { joke ->
             Log.d("STUFF", joke.toString())
         })
 
         val binding : MainActivityBinding = DataBindingUtil.setContentView(this, R.layout.main_activity)
         binding.setLifecycleOwner(this)
-        binding.viewModel = viewModel
+        binding.viewModel = jokeViewModel
 
-        viewModel.loadJoke()
+        jokeViewModel.loadJoke()
     }
 }
