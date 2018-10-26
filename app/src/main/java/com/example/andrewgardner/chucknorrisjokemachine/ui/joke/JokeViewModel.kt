@@ -1,5 +1,6 @@
 package com.example.andrewgardner.chucknorrisjokemachine.ui.joke
 
+import android.arch.lifecycle.LiveData
 import android.arch.lifecycle.MutableLiveData
 import android.arch.lifecycle.ViewModel
 import android.util.Log
@@ -13,7 +14,7 @@ class JokeViewModel(
         private val chuckNorrisRepository: ChuckNorrisRepository
 ) : ViewModel() {
 
-    private var jokeText: MutableLiveData<String>  = MutableLiveData()
+    private var jokeText: MutableLiveData<String> = MutableLiveData()
 
     fun getText(): MutableLiveData<String> {
         if (jokeText == null) {
@@ -38,6 +39,10 @@ class JokeViewModel(
     }
 
     fun loadJoke() {
+        //val joke : MutableLiveData<Joke> = chuckNorrisRepository.getRandomJoke2()
+        //ßLog.e("STUFF", joke.value.toString())
+        //jokeText.value = joke.value as String?
+
         chuckNorrisRepository.getRandomJoke(callback)
     }
 }
