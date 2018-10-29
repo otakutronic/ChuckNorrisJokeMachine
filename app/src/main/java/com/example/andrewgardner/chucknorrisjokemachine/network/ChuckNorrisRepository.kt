@@ -6,7 +6,6 @@ import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 //import com.sun.tools.internal.xjc.reader.xmlschema.bindinfo.BIConversion.User
 import android.arch.lifecycle.MutableLiveData
-import android.arch.lifecycle.LiveData
 import android.util.Log
 //import com.sun.tools.internal.xjc.reader.xmlschema.bindinfo.BIConversion.User
 import retrofit2.Call
@@ -62,7 +61,10 @@ class ChuckNorrisRepository {
         }
     }*/
 
-    fun getRandomJoke2(): MutableLiveData<Joke> {
+    fun getRandomJoke2(setJoke: (joke: MutableLiveData<Joke>) -> Unit) {
+
+        //bar(m)
+
         /*val cached = userCache!!.get()
         if (cached != null) {
             return cached
@@ -83,7 +85,6 @@ class ChuckNorrisRepository {
         }
 */
 
-        val data = MutableLiveData<Joke>()
         //val data Callback<Joke>
         // This implementation is still suboptimal but better than before.
         // A complete implementation also handles error cases.
@@ -92,13 +93,16 @@ class ChuckNorrisRepository {
                 Log.e("STUFF", response.body()?.value.toString())
                 //data.setValue(response.body())
                 //val joke = response?.body()
-                data.value = response.body()
+
+                val responseBody = MutableLiveData<Joke>().apply { value = response.body() }
+                setJoke(responseBody)
+
             }
             override fun onFailure(call: Call<Joke>?, t: Throwable?) {
                 Log.v("Error", t.toString())
             }
         })
 
-        return data
+        //return data
     }
 }

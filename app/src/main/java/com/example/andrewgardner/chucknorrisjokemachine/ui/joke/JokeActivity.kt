@@ -23,8 +23,8 @@ class JokeActivity : AppCompatActivity() {
                 .get(JokeViewModel::class.java)
 
         // observe joke livedata
-        jokeViewModel.getText().observe(this, Observer { joke ->
-            Log.d("STUFF", joke.toString())
+        jokeViewModel.getJoke()?.observe(this, Observer { joke ->
+            Log.e("STUFF", joke?.value)
         })
 
         val binding : MainActivityBinding = DataBindingUtil.setContentView(this, R.layout.main_activity)

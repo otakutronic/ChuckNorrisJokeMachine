@@ -1,6 +1,5 @@
 package com.example.andrewgardner.chucknorrisjokemachine.ui.joke
 
-import android.arch.lifecycle.LiveData
 import android.arch.lifecycle.MutableLiveData
 import android.arch.lifecycle.ViewModel
 import android.util.Log
@@ -14,19 +13,40 @@ class JokeViewModel(
         private val chuckNorrisRepository: ChuckNorrisRepository
 ) : ViewModel() {
 
-    private var jokeText: MutableLiveData<String> = MutableLiveData()
+    //private var jokeText: MutableLiveData<String> = MutableLiveData()
 
-    fun getText(): MutableLiveData<String> {
+    private var joke = MutableLiveData<Joke>()
+
+    //private val joke: MutableLiveData<Joke>? = Transformations.switchMap(organizationIdLiveData) { organizationId -> chuckNorrisRepository.getRandomJoke2() }
+
+    /*fun getText(): MutableLiveData<String> {
         if (jokeText == null) {
             jokeText = MutableLiveData()
         }
         return jokeText
+    }*/
+
+    fun getJoke() : MutableLiveData<Joke>? {
+        if (joke == null) {
+            joke = MutableLiveData()
+        }
+        return joke
     }
+
+    fun setJoke(jokeData: MutableLiveData<Joke>) {
+        this.joke.value = jokeData.value
+    }
+
+    /*fun fetchLists(organizationId: String, forceRefresh: Boolean = false) {
+        if (organizationIdLiveData.value == null || forceRefresh) {
+            organizationIdLiveData.value = organizationId
+        }
+    }*/
 
     private val callback = object : Callback<Joke> {
         override fun onResponse(call: Call<Joke>?, response: Response<Joke>?) {
-            val joke = response?.body()
-            jokeText.value = joke?.value
+            val responseValue = response?.body()
+            joke.value = responseValue
         }
 
         override fun onFailure(call: Call<Joke>?, t: Throwable?) {
@@ -34,14 +54,34 @@ class JokeViewModel(
         }
     }
 
+    public fun callback2() {
+        Log.e("STUFF", "Callback")
+    }
+
+    fun foo(m: String, bar: (m: String) -> Unit) {
+        bar(m)
+    }
+
+    // my function to pass into the other
+    fun buz(m: String) {
+        println("another message: $m")
+    }
+
+    // someone passing buz into foo
+    fun something() {
+        foo("hi", ::buz)
+    }
+
+
     fun onClickButton() {
         loadJoke()
     }
 
     fun loadJoke() {
-        val joke : MutableLiveData<Joke> = chuckNorrisRepository.getRandomJoke2()
-        jokeText.value = joke.value as String?
-        Log.e("STUFF", jokeText.value.toString())
+        chuckNorrisRepository.getRandomJoke2(::setJoke)
+
+        //jokeText.value = joke.value as String?
+        //Log.e("STUFF", joke.value.toString())
 
         //chuckNorrisRepository.getRandomJoke(callback)
     }
